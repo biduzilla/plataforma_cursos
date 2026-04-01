@@ -1,0 +1,10 @@
+package org.acme.plataforma.courses.application.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+public record RegisterRequest(
+        @NotBlank String name,
+        @NotBlank @Email String email,
+        @NotBlank String password
+) {}
