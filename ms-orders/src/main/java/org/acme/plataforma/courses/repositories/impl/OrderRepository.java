@@ -25,7 +25,7 @@ public class OrderRepository implements IOrderRepository {
 
     @Override
     public List<Order> findPendingByCourse(UUID courseId) {
-        return find("courseId = ?1 and status",
+        return find("courseId = ?1 and status = ?2",
                 courseId, OrderStatus.PENDING).list();
     }
 

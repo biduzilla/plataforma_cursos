@@ -4,7 +4,7 @@ import io.quarkus.security.UnauthorizedException;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.Provider;
-import org.acme.plataforma.courses.requests.ErrorResponse;
+import org.acme.plataforma.courses.responses.ErrorResponse;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 

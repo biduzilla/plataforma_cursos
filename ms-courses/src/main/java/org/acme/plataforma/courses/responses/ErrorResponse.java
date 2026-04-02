@@ -1,4 +1,4 @@
-package org.acme.plataforma.courses.requests;
+package org.acme.plataforma.courses.responses;
 
 import java.time.LocalDateTime;
 import java.util.List;

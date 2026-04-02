@@ -19,6 +19,6 @@ public class User {
     @Column(nullable = false)
     public String passwordHash;
     @Enumerated(EnumType.STRING)
-    public Role role = Role.STUDENT;
+    public Role role = Role.INSTRUCTOR;
     public LocalDateTime createdAt = LocalDateTime.now();
 }

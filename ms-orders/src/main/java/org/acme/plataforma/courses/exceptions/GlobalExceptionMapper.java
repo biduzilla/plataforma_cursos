@@ -1,8 +1,9 @@
 package org.acme.plataforma.courses.exceptions;
 
+import io.quarkus.security.UnauthorizedException;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.core.Response;
-import org.acme.plataforma.courses.requests.ErrorResponse;
+import org.acme.plataforma.courses.responses.ErrorResponse;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 
@@ -56,5 +57,12 @@ public class GlobalExceptionMapper {
                 .toList();
         return RestResponse.status(Response.Status.BAD_REQUEST,
                 new ErrorResponse("Erro de validação", errors));
+    }
+
+    @ServerExceptionMapper
+    public Response handleForbiddenException(ForbiddenException ex) {
+        return Response.status(Response.Status.FORBIDDEN)
+                .entity(new ErrorResponse(ex.getMessage()))
+                .build();
     }
 }
