@@ -10,6 +10,7 @@ import org.acme.plataforma.courses.exceptions.ForbiddenException;
 import org.acme.plataforma.courses.exceptions.NotFoundException;
 import org.acme.plataforma.courses.mapper.CourseMapper;
 import org.acme.plataforma.courses.models.Course;
+import org.acme.plataforma.courses.producers.CourseEventProducer;
 import org.acme.plataforma.courses.repositories.ICourseRepository;
 import org.acme.plataforma.courses.requests.CourseRequest;
 import org.acme.plataforma.courses.responses.CourseResponse;
@@ -26,6 +27,8 @@ public class CourseService implements ICourseService {
     ICourseRepository courseRepository;
     @Inject
     CourseMapper courseMapper;
+    @Inject
+    CourseEventProducer eventProducer;
 
     @Override
     public PageResponse<CourseResponse> search(String title, CourseStatusEnum status, int page, int pageSize) {
@@ -111,6 +114,8 @@ public class CourseService implements ICourseService {
 
         course.status = CourseStatusEnum.ARCHIVED;
         course.updatedAt = LocalDateTime.now();
+
+        eventProducer.publishCourseArchived(course);
 
         return courseMapper.toResponse(course);
     }
